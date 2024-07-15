@@ -1,0 +1,21 @@
+In a bidirectional relationship, you can navigate from one entity to the other
+and vice versa. However, the presence of a foreign key in the referencing table (the "inverse" side)
+depends on how the relationship is mapped in JPA.
+
+Let's clarify the concepts with your Employee and ParkingSlot entities:
+
+Owning Side (ParkingSlot):
+
+In your example, ParkingSlot is the owning side of the relationship because it contains the @JoinColumn annotation.
+The @JoinColumn annotation specifies the foreign key column (empId) in the ParkingSlot table that references the primary key of the Employee table.
+In this case, the ParkingSlot table has a foreign key referencing the Employee table.
+
+Inverse Side (Employee):
+The Employee entity is the inverse side of the relationship because it contains the mappedBy attribute.
+The mappedBy attribute specifies that the ParkingSlot entity owns the relationship through its employee field.
+The presence of a foreign key in the Employee table depends on how the relationship is mapped. In your current setup, there is no foreign key column in the Employee table pointing to the ParkingSlot table.
+So, in summary:
+
+Yes, in a bidirectional one-to-one relationship, typically, the owning side
+(such as ParkingSlot) would have a foreign key referencing the inverse side (such as Employee).
+However, in JPA, the presence of a foreign key in the inverse side depends on how the relationship is mapped. In your case, the inverse side (Employee) does not have a foreign key column pointing to the owning side (ParkingSlot). Instead, it navigates to the owning side through the parkingSlot field.
